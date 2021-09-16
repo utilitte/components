@@ -1,0 +1,9 @@
+<div class="grid-cols-1">
+	<div class="tabs">
+		{foreach $tabs as $tab}
+			{var $isCurrent = isCurrentLink($tab->link)}
+
+			<a href="{$tab->link}" n:class="tab, $isCurrent ? active">{$tab->name}</a>
+		{/foreach}
+	</div>
+</div>
