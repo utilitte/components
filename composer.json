@@ -1,5 +1,5 @@
 {
-	"name": "webchemistry/components",
+	"name": "utilitte/components",
 	"require": {
 		"php": ">=8.0"
 	},
