@@ -3,7 +3,6 @@
 namespace Utilitte\Components\Rating;
 
 use Nette\Application\UI\Control;
-use Nette\Security\User;
 use Utilitte\Components\Rating\Model\RatingModelInterface;
 use Utilitte\Components\Rating\ValueObject\Rating;
 use Utilitte\Components\Utility\TControl;
@@ -23,7 +22,6 @@ final class RatingComponent extends Control
 	public function __construct(
 		private RatingModelInterface $model,
 		private Rating $rating,
-		private User $user,
 	)
 	{
 	}
@@ -40,7 +38,7 @@ final class RatingComponent extends Control
 		$this->onVoted[] = $callback;
 	}
 
-	public function render(): void
+	public function render(mixed ... $arguments): void
 	{
 		$template = $this->getTemplate();
 		$template->setFile($this->getFile(__DIR__ . '/templates/rating.latte'));
@@ -52,6 +50,10 @@ final class RatingComponent extends Control
 
 		$template->increase = $this->increase;
 		$template->canVote = $this->rating->canVote();
+
+		foreach ($arguments as $name => $value) {
+			$template->$name = $value;
+		}
 
 		$template->render();
 	}
