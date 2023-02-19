@@ -19,9 +19,13 @@ final class RatingComponent extends Control
 
 	private int $increase = 0;
 
+	/**
+	 * @param array<string, mixed> $options
+	 */
 	public function __construct(
 		private RatingModelInterface $model,
 		private Rating $rating,
+		private array $options = [],
 	)
 	{
 	}
@@ -50,6 +54,10 @@ final class RatingComponent extends Control
 
 		$template->increase = $this->increase;
 		$template->canVote = $this->rating->canVote();
+
+		foreach ($this->options as $name => $value) {
+			$template->$name = $value;
+		}
 
 		foreach ($arguments as $name => $value) {
 			$template->$name = $value;

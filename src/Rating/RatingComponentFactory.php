@@ -8,6 +8,9 @@ use Utilitte\Components\Rating\ValueObject\Rating;
 interface RatingComponentFactory
 {
 
-	public function create(RatingModelInterface $model, Rating $rating): RatingComponent;
+	/**
+	 * @param array<string, mixed> $options
+	 */
+	public function create(RatingModelInterface $model, Rating $rating, array $options = []): RatingComponent;
 
 }
